@@ -1,0 +1,7 @@
+README_EN.md
+.vscode/
+log/
+build/
+install/
+*.tar
+*.gz
