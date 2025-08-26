@@ -10,6 +10,18 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 
+add_executable(subscriber_lamda src/lambda.cpp)
+ament_target_dependencies(subscriber_lamda rclcpp std_msgs)
+
+add_executable(subscriber_member_function_with_type_adapter src/member_function_with_type_adapter.cpp)
+ament_target_dependencies(subscriber_member_function_with_type_adapter rclcpp std_msgs)
+
+install(TARGETS
+  subscriber_lamda
+  subscriber_member_function_with_type_adapter
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   # the following line skips the linter which checks for copyrights

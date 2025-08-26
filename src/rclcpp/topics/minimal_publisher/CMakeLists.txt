@@ -16,8 +16,12 @@ ament_target_dependencies(publisher_lambda rclcpp std_msgs)
 add_executable(publisher_member_function_with_type_adapter src/member_function_with_type_adapter.cpp)
 ament_target_dependencies(publisher_member_function_with_type_adapter rclcpp std_msgs)
 
+add_executable(publisher_member_function src/member_function.cpp)
+ament_target_dependencies(publisher_member_function rclcpp std_msgs)
+
 install(TARGETS
   publisher_lambda
+  publisher_member_function
   publisher_member_function_with_type_adapter
   DESTINATION lib/${PROJECT_NAME}
 )
