@@ -93,3 +93,11 @@ private:
     size_t count_1_;
     size_t count_2_;
 };
+
+int main(int argc, char *argv[])
+{
+    rclcpp::init(argc, argv);
+    rclcpp::spin(std::make_shared<MinimalPublisherWithUniqueNetworkFlowEndpoints>());
+    rclcpp::shutdown();
+    return 0;
+}

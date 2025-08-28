@@ -19,10 +19,22 @@ ament_target_dependencies(publisher_member_function_with_type_adapter rclcpp std
 add_executable(publisher_member_function src/member_function.cpp)
 ament_target_dependencies(publisher_member_function rclcpp std_msgs)
 
+add_executable(publisher_member_function_with_unique_network_flow_endpoints src/member_function_with_unique_network_flow_endpoints.cpp)
+ament_target_dependencies(publisher_member_function_with_unique_network_flow_endpoints rclcpp std_msgs)
+
+add_executable(publisher_wait_for_all_acked src/member_function_with_wait_for_all_acked.cpp)
+ament_target_dependencies(publisher_wait_for_all_acked rclcpp std_msgs)
+
+add_executable(publisher_not_composable src/not_composable.cpp)
+ament_target_dependencies(publisher_not_composable rclcpp std_msgs)
+
 install(TARGETS
   publisher_lambda
   publisher_member_function
   publisher_member_function_with_type_adapter
+  publisher_member_function_with_unique_network_flow_endpoints
+  publisher_wait_for_all_acked
+  publisher_not_composable
   DESTINATION lib/${PROJECT_NAME}
 )
 
