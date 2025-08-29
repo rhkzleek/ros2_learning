@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(minimal_timer)
+project(minimal_service)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -8,17 +8,21 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(std_msgs REQUIRED)
+find_package(example_interfaces REQUIRED)
 
-add_executable(timer_lambda src/lambda.cpp)
-ament_target_dependencies(timer_lambda rclcpp)
+add_executable(minimal_services_client src/minimal_client.cpp)
+ament_target_dependencies(minimal_services_client rclcpp example_interfaces)
 
-add_executable(timer_member_function src/member_function.cpp)
-ament_target_dependencies(timer_member_function rclcpp)
+add_executable(minimal_services_service src/minimal_service.cpp)
+ament_target_dependencies(minimal_services_service rclcpp example_interfaces)
+
+add_executable(minimal_async_client src/async_client.cpp)
+ament_target_dependencies(minimal_async_client rclcpp example_interfaces)
 
 install(TARGETS
-  timer_lambda
-  timer_member_function
+  minimal_services_client
+  minimal_services_service
+  minimal_async_client
   DESTINATION lib/${PROJECT_NAME}
 )
 
