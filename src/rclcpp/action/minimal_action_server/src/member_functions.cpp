@@ -22,6 +22,9 @@ public:
     explicit MinimalActionServer(const rclcpp::NodeOptions &options = rclcpp::NodeOptions()) : Node("minimal_action_server", options)
     {
         using namespace std::placeholders;
+        auto call_back_group = this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);
+        // rclcpp::Serv ServerOptions
+
         this->action_server_ = rclcpp_action::create_server<Fibonacci>(
             this->get_node_base_interface(),
             this->get_node_clock_interface(),
@@ -30,7 +33,11 @@ public:
             "fibonacci",
             std::bind(&MinimalActionServer::handle_goal, this, _1, _2),
             std::bind(&MinimalActionServer::handle_cancel, this, _1),
-            std::bind(&MinimalActionServer::handle_accepted, this, _1));
+            std::bind(&MinimalActionServer::handle_accepted, this, _1),
+            rcl_action_server_get_default_options(),
+            call_back_group);
+
+        auto call_back_group = this->create_callback_group(rclcpp::CallbackGroupType::MutuallyExclusive);
     }
 
 private:
